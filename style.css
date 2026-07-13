@@ -505,7 +505,11 @@ main{
   outline: 2px solid var(--terracotta-500);
   outline-offset: 2px;
 }
-
+#copy-password:disabled {
+  opacity: 0.6;
+  cursor: default;
+  color: var(--neutral-600);
+}
 
 
 /*responsividade*/
@@ -680,5 +684,61 @@ main{
 
   .actions {
     flex-direction: column;
+  }
+}
+
+@media print {
+  .sidebar,
+  .top-row,
+  .host-note-card,
+  .hover-hint,
+  .info-row,
+  .attribution {
+    display: none !important;
+  }
+
+  body,
+  main,
+  .content-starts {
+    display: block;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .booking-card {
+    width: auto;
+    min-height: auto;
+    margin: 0;
+  }
+
+  .receipt-card {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    transform: none !important;
+    padding: 1rem;
+  }
+
+  * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .receiptTit,
+  .total p {
+    border-bottom: 1px solid #000;
+  }
+
+  .stay-dates {
+    border-top: 1px dashed #000;
+    border-bottom: 1px dashed #000;
+  }
+
+  .total {
+    border-top: 1px solid #000;
   }
 }

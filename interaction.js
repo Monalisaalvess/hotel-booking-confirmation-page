@@ -70,3 +70,88 @@ menuToggle.addEventListener("click", () => {
   const isOpen = sidebarNav.classList.contains("open");
   menuToggle.setAttribute("aria-expanded", isOpen);
 });
+
+
+//copiar senha wifi
+const copyButton = document.getElementById("copy-password");
+const wifiPassword = document.getElementById("wifi-password");
+
+if (copyButton && wifiPassword) {
+  copyButton.addEventListener("click", async () => {
+    const password = wifiPassword.textContent.trim();
+
+    try {
+      await navigator.clipboard.writeText(password);
+      showCopyFeedback(true);
+    } catch (error) {
+      const tempInput = document.createElement("input");
+      tempInput.value = password;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      showCopyFeedback(true);
+    }
+  });
+}
+
+function showCopyFeedback(success) {
+  const originalText = copyButton.textContent;
+  copyButton.textContent = success ? "Copied!" : "Error";
+  copyButton.disabled = true;
+
+  setTimeout(() => {
+    copyButton.textContent = originalText;
+    copyButton.disabled = false;
+  }, 1500);
+}
+
+//recibo 
+const printButton = document.getElementById("print-receipt");
+
+if (printButton) {
+  printButton.addEventListener("click", () => {
+    window.print();
+  });
+}
+
+// calendário
+const calendarButton = document.getElementById("add-calendar");
+
+if (calendarButton) {
+  calendarButton.addEventListener("click", generateCalendarFile);
+}
+
+function generateCalendarFile() {
+  const checkIn = "20260425T150000";
+  const checkOut = "20260429T110000";
+  const now = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+  const icsContent = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Maison Soleil//Booking//EN",
+    "BEGIN:VEVENT",
+    `UID:${Date.now()}@maisonsoleil`,
+    `DTSTAMP:${now}`,
+    `DTSTART:${checkIn}`,
+    `DTEND:${checkOut}`,
+    "SUMMARY:Stay at Maison Soleil",
+    "DESCRIPTION:Room: La Garrigue. Check-in from 15:00\\, ring the brass bell by the blue door.",
+    "LOCATION:12 Rue des Oliviers\\, Cassis",
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "maison-soleil-booking.ics";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+}
