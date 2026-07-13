@@ -21,7 +21,8 @@ Users should be able to:
 - Copy the Wi-Fi password to their clipboard using the copy button
 
 ### Screenshot
-![](./screenshot.jpg)
+<img width="1347" height="590" alt="image" src="https://github.com/user-attachments/assets/16a61192-6a0a-40cb-82b7-545d1213624e" />
+
 
 ### Built with
 - Semantic HTML5 markup
@@ -32,4 +33,4 @@ Users should be able to:
 - Vanilla JavaScript
 
 ## Author
-- GitHub - [@your-username](https://github.com/your-username)
+- GitHub - [@your-username](https://github.com/Monalisaalvess)
