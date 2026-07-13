@@ -12,7 +12,6 @@ This is a solution to the [Hotel booking confirmation page challenge on Frontend
 
 
 ### The challenge
-
 Users should be able to:
 
 - View the optimal layout for the interface depending on their device's screen size
@@ -20,6 +19,8 @@ Users should be able to:
 - Open and close the navigation menu on smaller screens
 - Copy the Wi-Fi password to their clipboard using the copy button
 
+###Link
+https://monalisaalvess.github.io/hotel-booking-confirmation-page/
 ### Screenshot
 <img width="1347" height="590" alt="image" src="https://github.com/user-attachments/assets/16a61192-6a0a-40cb-82b7-545d1213624e" />
 
